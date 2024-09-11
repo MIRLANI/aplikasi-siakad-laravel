@@ -1,0 +1,145 @@
+@startuml Siakad
+
+
+entity users{
+    id :integer <<PK>>
+    role_id :integer <<FK>>
+    --
+    username :varchar
+    email :varchar
+    password :varchar
+}
+
+
+entity profils{
+    id :integer <<PK>>  
+    user_id :integer <<FK>>
+    --
+    nama :varchar
+    nim :varchar
+    jurusan :varchar
+    fakultas :varchar
+    facebook :varchar
+    twiter :varchar
+    google :varchar
+    istagram :varchar
+    foto :varchar
+}
+
+
+entity data_induks{
+    id :integer <<PK>>
+    profil_id :integer <<FK>>
+    --
+    nik :varchar
+    npwp :varchar
+    tmp_lahir :varchar
+    tgl_lahir :varchar
+    no_hp :varchar
+    jenis_kelamin :varchar
+    agama :varchar
+    warga_negara :varchar
+    status_masuk :varchar
+    nisn :varchar
+    ukuran_baju :varchar
+}
+
+entity data_alamats{
+    id :integer <<PK>>
+    profil_id :integer <<FK>>
+    --
+    alamat_sekarang :varchar
+    kecamatan :varchar
+    desa :varchar
+    dusun :varchar
+    rt :varchar
+    rw :varchar
+    jln :varchar
+    kode_post :varchar   
+}
+
+entity  data_orang_tuas{
+    id :integer <<PK>>
+    profil_id :integer <<FK>>
+    --
+    nik_ibu :varchar
+    nama_ibu :varchar
+    nik_ayar :varchar
+    nama_ayah :varchar
+    alamat :varchar
+    no_hp :varchar
+    pekerjaan_ayah :varchar
+    pekerjaan_ibu :varchar
+    penghasilan_ibu :varchar
+    penghasila_ayah :varchar
+    pendidikan_ayah :varchar
+    pendidikan_ibu :varchar
+    status_hidup_ayah :varchar
+    status_hidup_ibu :varchar
+}
+
+entity krss {
+    id :integer <<PK>>
+    user_id :integer <<FK>>
+    --
+
+}
+
+entity riwayat_krss {
+    id :integer <<PR>>
+    jadwal_id :integer <<FK>>
+    krs_id :integer <<FK>>
+    --
+    matakuliah :varchar
+    sks :varchar
+    hari :varchar
+    jam :varchar
+    dosen :varchar
+    ruangan :varchar
+    kelas :varchar
+    jenis_kelas :varchar
+    semester :varchar
+    totol_sks :varchar
+}
+
+entity jadwals{
+    
+}
+
+entity khss{
+    
+}
+
+
+' 1. mahasiswa
+' 2. dosen
+' 3. prodik
+' 4. admin
+entity roles{
+    id :integer <<PR>>
+    --
+    role :varchar
+}
+
+entity dosens{
+
+}
+
+entity matakuliahs{
+
+}
+
+
+users ||--o|dosens
+
+roles ||-o{users
+users ||-o|profils
+profils ||--o|data_induks
+profils ||--o|data_alamats
+profils ||--o|data_orang_tuas
+
+
+
+
+
+@enduml
